@@ -1,0 +1,35 @@
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+    $urlInterface = $objectManager->get('\Magento\Framework\UrlInterface');
+    $currentUrl = $urlInterface->getCurrentUrl();
+?>
+<div class="print-btn-wrap">
+    <button type="button" class="print-btn action primary print-product-pdf" id="print-product-pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <?= $block->escapeHtml(__('Download As PDF ')) ?></button>
+</div>
+
+<script type="text/javascript">
+require(['jquery','domReady!'], function ($) {
+    jQuery(document).ready(function(){
+        jQuery(".print-product-pdf").on('click',function(){
+            var url = '<?php echo $this->getUrl("productpdf/index/index"); ?>';
+            jQuery.ajax({
+                url: url,
+                type: "POST",
+                data: {product_id:"<?php echo $product->getId(); ?>",product_url:"<?php echo $currentUrl; ?>"},
+                showLoader: true,
+                success: function(response){
+                    if(response) {
+                        var a = document.createElement('a');
+                        var url = response;
+                        a.href = url;
+                        a.download = 'product.pdf';
+                        document.body.append(a);
+                        a.click();
+                        a.remove();
+                    }
+                }
+            });
+        });
+    });
+});
+</script>
