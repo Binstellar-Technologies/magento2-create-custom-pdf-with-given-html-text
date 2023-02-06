@@ -43,14 +43,18 @@ php bin/magento cache:flush
 
 ##### PDF download link on details page
 <kbd>
+  
 ![image1](https://user-images.githubusercontent.com/123800304/216516080-dc4e0d02-6455-4fd9-8a6d-98efaab34f71.png)
+  
 </kbd>
 &nbsp;
 &nbsp;
 
 ##### PDF output
 <kbd>
+  
 ![image2](https://user-images.githubusercontent.com/123800304/216516153-f9944611-867a-4401-93f1-5f92f0eed3f7.png)
+  
 </kbd>
 &nbsp;
 &nbsp;
